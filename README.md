@@ -1,0 +1,1 @@
+This is Altschool third semester mini-project on using terraform to setup three aws instances running under an application load balancer and deploying apache on three instances using apache

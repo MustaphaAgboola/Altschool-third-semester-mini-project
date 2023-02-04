@@ -1,0 +1,43 @@
+---
+- name: Ansible Playbook to install apache
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install latest version of Apache
+      apt:
+        name: apache2
+        state: present
+      tags: apache2
+
+    - name: Add PHP repository
+      apt_repository:
+        repo: ppa:ondrej/php
+        update_cache: yes
+      tags: php
+
+    - name: Install PHP
+      apt:
+        name: php7.4
+        state: present
+      tags: php
+
+    - name: Set-timezone
+      timezone:
+        name: Africa/Lagos
+
+    - name: Copy your index file
+      template:
+        src: "files/index-template.html"
+        dest: "/var/www/html/index.php"
+
+    - name: Remove index.html
+      file:
+        name: /var/www/html/index.html
+        state: absent
+
+
+  handlers:
+    - name: restart-apache
+      service:
+        name: apache2
+        state: restarted

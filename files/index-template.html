@@ -1,0 +1,15 @@
+<html>
+	<head>
+		<title>Altschool mini-project</title>
+	</head>
+	<body>
+		<h1>This is my server hoostname: <?php $hostname = gethostname(); echo "$hostname";?></h1>
+                <h1>Server time is:
+ <?php
+date_default_timezone_set( "Africa/Lagos");
+echo date('Y-m-d H:i:s');
+echo date_default_timezone_get();
+?></h1>
+                
+        </body>
+</html>
